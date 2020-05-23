@@ -4,7 +4,7 @@ import DescriptionWithLink from '../../shared/DescriptionWithLink'
 
 const Planet = (props) => {
     return (
-        <div>
+        <div onClick={()=> props.clickOnPlanet(props.name)}>
             <h4>{props.name}</h4>
             <GrayImg img_url={props.img_url}/>
             <DescriptionWithLink 
