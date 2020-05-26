@@ -3,7 +3,7 @@ import GrayImg from '../../shared/gray_Img';
 import DescriptionWithLink from '../shared/DescriptionWithLink';
 import Form from '../../planet/form';
 
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
 
 async function getPlanet(id) {
     let response = await fetch(`http://localhost:3000/api/${id}.json`)
@@ -14,6 +14,8 @@ async function getPlanet(id) {
 const Planet = () => {
     const [satellites, setSatellites] = useState([]);
     const [planet, setPlanet] = useState({});
+    const [redirect, setRedirect] = useState(false);
+
     let { id } = useParams();
     let history = useHistory();
     
@@ -21,6 +23,8 @@ const Planet = () => {
         getPlanet(id).then(data => { 
             setSatellites(data['satellites']);
             setPlanet(data['data']);
+        }, error => {
+            setRedirect(true);
         })
     }, [])
 
@@ -31,6 +35,9 @@ const Planet = () => {
     const addSatellite = (new_satellite) => {
         setSatellites([...satellites, new_satellite]);
     }
+
+    if(redirect)
+        return <Redirect to='/'/>
 
     return (
         <div>
