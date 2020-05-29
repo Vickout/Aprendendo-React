@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import GrayImg from '../../shared/gray_Img';
+import GrayImg from '../shared/gray_Img';
 import DescriptionWithLink from '../shared/DescriptionWithLink';
-import Form from '../../planet/form';
+import Form from '../planet/form';
 
 import { useParams, useHistory, Redirect } from 'react-router-dom';
 
